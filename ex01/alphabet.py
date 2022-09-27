@@ -25,6 +25,7 @@ def shutudai():
         num = random.randint(len(abc))
         ans.append(abc.pop(num))
     
+    random.shuffle(abc)
     for i in range(taisyou-kesson):
         txt += f"{abc[i]} "
 
