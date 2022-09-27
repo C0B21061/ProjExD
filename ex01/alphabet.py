@@ -5,21 +5,21 @@ taisyou = 10
 kesson = 2
 abc = []
 ans = []
-txt1 = ""
-txt2 = ""
+txt_a = ""
+txt_b = ""
 roop = False
 
 def shutudai():
-    global txt1,txt2
+    global txt_a,txt_b
     while len(abc)<taisyou:
         a = chr(random.randint(65,90))
         if a not in abc:
             abc.append(a)
     
     for i in range(taisyou):
-        txt1 += f"{abc[i]} "
+        txt_a += f"{abc[i]} "
 
-    print(txt1)
+    print(txt_a)
 
     for i in range(kesson):
         num = random.randint(len(abc))
@@ -27,9 +27,9 @@ def shutudai():
     
     random.shuffle(abc)
     for i in range(taisyou-kesson):
-        txt2 += f"{abc[i]} "
+        txt_b += f"{abc[i]} "
 
-    print(txt2)
+    print(txt_b)
 
 def kaito():
     global roop
