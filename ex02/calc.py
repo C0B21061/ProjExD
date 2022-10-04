@@ -12,6 +12,14 @@ def color2(event):
     event.widget["bg"]="SystemButtonFace"
     event.widget["fg"]="#000000"
 
+def color3(event):
+    event.widget["bg"]="#ffffff"
+    event.widget["fg"]="#000000"
+
+def color4(event):
+    event.widget["bg"]="#000000"
+    event.widget["fg"]="#ffffff"
+
 def num_click(event):
     btn = event.widget
     txt = btn["text"]
@@ -74,10 +82,10 @@ button.bind("<Leave>",color2)
 button.grid(row=5,column=2)
 
 for i,enzan in enumerate(enzan_list,1):
-    button = tk.Button(root,text=f"{enzan}",font=("times New Roman",30),width=4,height=2)
+    button = tk.Button(root,text=f"{enzan}",font=("times New Roman",30),width=4,height=2, bg="#000000", fg="#ffffff")
     button.bind("<1>",num_click)
-    button.bind("<Enter>",color1)
-    button.bind("<Leave>",color2)
+    button.bind("<Enter>",color3)
+    button.bind("<Leave>",color4)
     button.grid(row=i,column=4)
 
 button = tk.Button(root,text="log10",font=("times New Roman",30),width=4,height=2)
