@@ -51,8 +51,8 @@ for i in range(9,-1,-1):
     button.bind("<1>",num_click)
     button.bind("<Enter>",color1)
     button.bind("<Leave>",color2)
-    r = [5,4,4,4,3,3,3,2,2,2]
-    c = [1,2,1,0,2,1,0,2,1,0]
+    r = [5,4,4,4,3,3,3,2,2,2] #それぞれのボタンのrowの位置を格納したリスト
+    c = [1,2,1,0,2,1,0,2,1,0] #それぞれのボタンのcolumnの位置を格納したリスト
     button.grid(row=r[i],column=c[i])
 
 button = tk.Button(root,text="AC",font=("times New Roman",30),width=4,height=2)
