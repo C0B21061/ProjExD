@@ -39,7 +39,7 @@ def main_proc():
             mx -= 1
 
     canv.coords("tori",cx,cy)
-
+ 
     if key == "Up" or key == "Down" or key == "Right" or key == "Left": 
         if key in xd:
             ch_mx = mx + xd[key]
