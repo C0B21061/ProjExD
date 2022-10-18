@@ -2,6 +2,9 @@ import tkinter as tk
 import tkinter.messagebox as tkm
 import maze_maker
 
+xd = {"Left":1, "Right":-1}
+yd = {"Up":1, "Down":-1}
+
 def key_down(event):
     global key
     key = event.keysym
@@ -36,30 +39,15 @@ def main_proc():
             mx -= 1
 
     canv.coords("tori",cx,cy)
-    
-    #　↓↓関数にしたかったができなかった↓↓
-    #　後ろを壁にするコードです
-    if key == "Up":
-        ch_my = my + 1
-        ch_mx = mx
-        canv.create_rectangle(ch_mx*100, ch_my*100, ch_mx*100+100, ch_my*100+100, 
-                                    fill="gray")
-        maze[ch_my][ch_mx]=1
-    elif key == "Down":
-        ch_my = my - 1
-        ch_mx = mx
-        canv.create_rectangle(ch_mx*100, ch_my*100, ch_mx*100+100, ch_my*100+100, 
-                                    fill="gray")
-        maze[ch_my][ch_mx]=1
-    elif key == "Left":
-        ch_mx = mx + 1
-        ch_my = my
-        canv.create_rectangle(ch_mx*100, ch_my*100, ch_mx*100+100, ch_my*100+100, 
-                                    fill="gray")
-        maze[ch_my][ch_mx]=1
-    elif key == "Right":
-        ch_mx = mx - 1
-        ch_my = my
+
+    if key == "Up" or key == "Down" or key == "Right" or key == "Left": 
+        if key in xd:
+            ch_mx = mx + xd[key]
+            ch_my = my
+        
+        elif key in yd:
+            ch_mx = mx
+            ch_my = my + yd[key]
         canv.create_rectangle(ch_mx*100, ch_my*100, ch_mx*100+100, ch_my*100+100, 
                                     fill="gray")
         maze[ch_my][ch_mx]=1
