@@ -35,6 +35,8 @@ def main_proc():
             mx -= 1
     canv.coords("tori",cx,cy)
     
+    #　↓↓関数にしたかったができなかった↓↓
+    #　後ろを壁にするコードです
     if key == "Up":
         ch_my = my + 1
         ch_mx = mx
