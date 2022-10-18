@@ -20,11 +20,12 @@ def main_proc():
         mx -= 1
     elif key == "Right":
         mx += 1
-    if maze[my][mx] == 0:
+
+    if maze[my][mx] == 0: #床ならば
         if mx==1 and my==7:
             mx, my = 13,1
         cx, cy = mx*100+50, my*100+50
-    else:
+    else: #床でなく壁ならば値を戻す
         if key == "Up":
             my += 1
         elif key == "Down":
@@ -33,6 +34,7 @@ def main_proc():
             mx += 1
         elif key == "Right":
             mx -= 1
+
     canv.coords("tori",cx,cy)
     
     #　↓↓関数にしたかったができなかった↓↓
