@@ -11,7 +11,7 @@ def check_bound(obj_rct,scr_rct):
     return yoko, tate
 
 def check_bound_bomb(obj_rct,scr_rct):
-    global bound
+    global bound #爆弾がバウンドしたときにTrueにし、処理を行う
     yoko, tate= 1, 1
     if obj_rct.left < scr_rct.left or obj_rct.right > scr_rct.right:
         yoko = -1
