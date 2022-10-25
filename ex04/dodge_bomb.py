@@ -2,6 +2,7 @@ import random as rd
 import pygame as pg
 import sys
 
+#爆弾以外の壁衝突の処理
 def check_bound(obj_rct,scr_rct):
     yoko, tate= 1, 1
     if obj_rct.left < scr_rct.left or obj_rct.right > scr_rct.right:
@@ -10,8 +11,10 @@ def check_bound(obj_rct,scr_rct):
         tate = -1
     return yoko, tate
 
+#爆弾の壁衝突の処理
 def check_bound_bomb(obj_rct,scr_rct):
-    global bound #爆弾がバウンドしたときにTrueにし、処理を行う
+    #boundは爆弾がバウンドしたときにTrueにし、処理を行う
+    global bound 
     yoko, tate= 1, 1
     if obj_rct.left < scr_rct.left or obj_rct.right > scr_rct.right:
         yoko = -1
@@ -23,17 +26,20 @@ def check_bound_bomb(obj_rct,scr_rct):
 
 def main():
     global bound
+    #ディスプレイの描画
     pg.display.set_caption("逃げろ！こうかとん")
     scrn_sfc = pg.display.set_mode((1600, 900))
     scrn_rct = scrn_sfc.get_rect()
     bg_sfc = pg.image.load("fig/pg_bg.jpg")
     bg_rct = bg_sfc.get_rect()
 
+    #こうかとん
     tori_sfc = pg.image.load("fig/5.png")
     tori_sfc = pg.transform.rotozoom(tori_sfc, 0, 2.0)
     tori_rct = tori_sfc.get_rect()
     tori_rct.center = 900, 400
 
+    #爆弾
     bomb_sfc = pg.Surface((20,20))
     bomb_sfc.set_colorkey((0,0,0))
     pg.draw.circle(bomb_sfc,(255,0,0),(10,10),10)
@@ -41,7 +47,8 @@ def main():
     bomb_rct.centerx = rd.randint(20,100)
     bomb_rct.centery = rd.randint(20,880)
 
-    warp_sfc = pg.Surface((120,120)) #ワープホールの描写
+    #ワープホール
+    warp_sfc = pg.Surface((120,120)) 
     warp_sfc.set_colorkey((0,0,0))
     pg.draw.circle(warp_sfc,(25,25,25),(60,60),60)
     warp_rct = warp_sfc.get_rect()
@@ -59,7 +66,8 @@ def main():
                 return
 
         key_states = pg.key.get_pressed()
-        if key_states[pg.K_SPACE]: #スペースを押している間加速
+        #スペースを押している間加速
+        if key_states[pg.K_SPACE]:
             walk = 3
         else: 
             walk = 1
@@ -89,7 +97,8 @@ def main():
         yoko, tate = check_bound(warp_rct,scrn_rct)
         yoko_bomb,tate_bomb = check_bound_bomb(bomb_rct,scrn_rct)
 
-        if bound == True: #爆弾が壁にぶつかったとき
+        #爆弾が壁にぶつかったとき
+        if bound == True:
             kasoku = 0.2
             if vx < 0:
                 vx -= kasoku
@@ -114,11 +123,13 @@ def main():
         scrn_sfc.blit(bomb_sfc,bomb_rct)
         scrn_sfc.blit(warp_sfc,warp_rct)
 
-        if tori_rct.colliderect(warp_rct): #ワープホールにあたった時の処理
+        #ワープホールにあたった時の処理
+        if tori_rct.colliderect(warp_rct):
             tori_rct.centery = rd.randint(100,800)
             tori_rct.centerx = rd.randint(100,1500)
             scrn_sfc.blit(tori_sfc, tori_rct)
 
+        #爆弾に当たった時の処理
         if tori_rct.colliderect(bomb_rct):
             return
 
