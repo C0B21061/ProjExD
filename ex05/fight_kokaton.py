@@ -143,8 +143,6 @@ def main():
         clock.tick(1000)
 
 
-
-
 if __name__ == "__main__":
     pg.init() # 初期化
     main()    # ゲームの本体
