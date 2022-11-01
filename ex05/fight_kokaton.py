@@ -134,9 +134,9 @@ def main():
         if enemy.rct.colliderect(attack.rct): 
             en_life -= 1
 
-        # ０になったら終了   
-        if en_life <= 0:
-            return 
+        # ０になったら終了 
+        if en_life < 0:
+            return  
 
 
         pg.display.update() 
